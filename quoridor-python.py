@@ -1,2 +1,1 @@
-//KAKA
-2ytrujytr
+jeu = [[0]*length]*height
