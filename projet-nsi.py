@@ -1,15 +1,15 @@
 ###########################################
-#          PROJET NSI: jeu du Quoridor    #
+#       PROJET NSI: jeu du Quoridor       #
 ###########################################
 
 
-"1)Qui fait quoi?
+"1) Qui fait quoi?
 
 # Guillaume Afonso: Carnet de projet + code
 # Gabriel Saglier: code
 # Christmann Tiago: code
 
-"2)Quel est notre projet?
+"2) Quel est notre projet?
 
 # Notre projet est basé sur le jeu de strategie Quoridor
 # dont je vais commencer par expliquer les règles.
@@ -23,7 +23,7 @@
 
 
 
-"(mettre nombre)Explication Code:
+" (mettre nombre)Explication Code:
 
 
 
