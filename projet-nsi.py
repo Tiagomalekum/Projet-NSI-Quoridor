@@ -18,7 +18,11 @@
 # Les pions doivent contourner les barrières, qui créent un labyrinthe dont il faut sortir très vite, 
 # car le premier qui atteint la ligne opposée avec son pion a gagné la partie!
 # Le jeu se joue a plusieurs(2, 3, 4,....) et le nombre de case peut varier selon l'envie de jouer
-# une partie courte, moyenne ou longue. (5*5, 7*7, 9*9,....)
+# une partie courte, moyenne ou longue. (5*5, 7*7, 9*9,....).
+Attention: 
+
+
+"interface
 
 
 
