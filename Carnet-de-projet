@@ -13,7 +13,8 @@
 
 # Notre projet est basé sur le jeu de strategie Quoridor
 # dont je vais commencer par expliquer les règles.
-"liste d'objet:
+
+# voici la liste d'objet cont nous aurons besoin :
 " pions / barrières / plateau de jeu
 
 # A tour de rôle, chacun déplace son pion d'une case ou pose une barrière afin de ralentir l'adversaire. 
