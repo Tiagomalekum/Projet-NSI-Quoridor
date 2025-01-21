@@ -1,8 +1,8 @@
 # Initialisation du plateau de jeu
 def init_tableau():
-    taille_tableau = 9
+    taille_tableau = 5
     tableau = [[' ' for _ in range(taille_tableau)] for _ in range(taille_tableau)]
-    joueurs = {'1': (0, taille_tableau // 2), '2': (taille_tableau - 1, taille_tableau // 2)} #
+    joueurs = {'1': (0, taille_tableau // 2), '2': (taille_tableau - 1, taille_tableau // 2)} #Positions initiales joueurs
     tableau[players['1'][0]][joueurs['A'][1]] = '1'
     tableau[players['2'][0]][joueurs['B'][1]] = '2'
 
