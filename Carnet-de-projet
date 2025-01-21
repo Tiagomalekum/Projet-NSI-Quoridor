@@ -32,7 +32,12 @@
 
 
 
-" (mettre nombre)Explication Code:
+"3) Explication Code : 
+
+  length = int(input())
+  height = int(input())
+  jeu = [[0*length]]*height
+  print(jeu)
 
 " interface(si le temps) + IA
 
