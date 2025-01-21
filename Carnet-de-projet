@@ -37,6 +37,8 @@ pa###########################################
 "3) Explication Code : 
 # Commencement du jeu.
 
+# Inialiasiton du plateau de jeu.
+
   length = int(input())
   height = int(input())
   jeu = [[0*length]]*height
