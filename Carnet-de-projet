@@ -24,7 +24,9 @@ pa###########################################
 # une partie courte, moyenne ou longue. (5*5, 7*7, 9*9,....).
 
 # Attention: il n'est pas possible d'enfermer completement le joueur d'en face,
-# c'est a dire que le joueur adverse doit toujours avoir une sortie.
+# c'est a dire que le joueur adverse doit toujours avoir une porte de sortie.
+
+
 
 
 
