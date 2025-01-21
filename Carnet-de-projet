@@ -35,6 +35,7 @@ pa###########################################
 
 
 "3) Explication Code : 
+# Commencement du jeu.
 
   length = int(input())
   height = int(input())
