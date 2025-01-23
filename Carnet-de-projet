@@ -72,8 +72,14 @@ DUREE D'UNE PARTIE:
 
 # Le jeu se joue a plusieurs(2, 3, 4,....) et le nombre de case peut varier selon l'envie de jouer
 # une partie courte, moyenne ou longue. (5*5, 7*7, 9*9,....).
+# le nombre de barrièrs doit etre proportionnelle par rapport a la taille du plateau
+# et donc le nombre de case qui s'y trouve.
 
 # peut sauter une barrière lorsque il saute par dessus un pion.
+
+# autoriser le déplacement digonalement.
+
+# Pourquoi pas mettre un nombre de mouvement de pion limitée.
 
 
 
