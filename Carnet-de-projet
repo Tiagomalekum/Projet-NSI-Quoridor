@@ -21,7 +21,7 @@ pa###########################################
 
 # A tour de rôle, chacun déplace son pion d'une case ou pose une barrière afin de ralentir l'adversaire. 
 # Les pions doivent contourner les barrières, qui créent un labyrinthe dont il faut sortir très vite, 
-# car le premier qui atteint la ligne opposée avec son pion a gagné la partie !
+# car le premier qui atteint la ligne opposée avec son pion gagne la partie !
 
 " REGLES POUR DEUX JOUEURS
 
@@ -35,27 +35,28 @@ Déroulement d’une partie
 A tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses
 barrières.
 Lorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.
+
 Déplacement des pions:
+
 les pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en
-arrière (fig 2) ; les barrières doivent être contournées (fig 3).
+arrière ; les barrières doivent être contournées 
 Pose des barrières:
-une barrière doit être posée exactement entre 2 blocs de 2 cases (fig 4).
+une barrière doit être posée exactement entre 2 blocs de 2 cases
 La pose des barrières a pour but de se créer son propre chemin ou de ralentir
 l’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut
-toujours lui laisser une solution (fig 5).
+toujours lui laisser une solution
+On ne peut pas non plus l'enfermer complètement, cela reprend donc la phrase d'au dessus,
+toujours lui laisser une solution.
+
 Face à face:
 quand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une
 barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière
-lui (fig 6).
+lui.
+
 Si une barrière est située derrière le pion sauté, le joueur peut choisir de bifurquer à
-droite ou à gauche du pion sauté (
+droite ou à gauche du pion sauté, mais
 
 
-
-
-
-# Attention: il n'est pas possible d'enfermer completement le joueur d'en face,
-# c'est a dire que le joueur adverse doit toujours avoir une porte de sortie.
 
 # Les barrières n'ont pas non plus le droit de bloquer complètement la ligne
 # d'arrivée.
