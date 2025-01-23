@@ -14,3 +14,5 @@ def print_tableau(tableau):
     print('+---' * len(tableau) + '+')
     return taleau, joueurs
 #Tiago et Gabriel n'oubliez pas d'expliquer le code.
+# Tester indépendamment chaque script que vous créer
+# pour vérifier que tout fonctionne comme il faut.
