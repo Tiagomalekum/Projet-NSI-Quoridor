@@ -1,4 +1,4 @@
-pa###########################################
+#############################################
 #       PROJET NSI: jeu du Quoridor         #
 #############################################
 
@@ -36,11 +36,13 @@ A tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de 
 barrières.
 Lorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.
 
-Déplacement des pions:
+" Déplacement des pions:
 
 les pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en
 arrière ; les barrières doivent être contournées 
-Pose des barrières:
+
+" Pose des barrières:
+
 une barrière doit être posée exactement entre 2 blocs de 2 cases
 La pose des barrières a pour but de se créer son propre chemin ou de ralentir
 l’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut
@@ -48,26 +50,31 @@ toujours lui laisser une solution
 On ne peut pas non plus l'enfermer complètement, cela reprend donc la phrase d'au dessus,
 toujours lui laisser une solution.
 
-Face à face:
+" Face à face:
+
 quand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une
 barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière
 lui.
 
 Si une barrière est située derrière le pion sauté, le joueur peut choisir de bifurquer à
-droite ou à gauche du pion sauté, mais
+droite ou à gauche du pion sauter ou peut sauter de l'autre coté de la barrière.
 
+FIN DE LA PARTIE
 
+Le premier joueur qui atteint une des 9 cases de la ligne opposée à sa ligne de départ
+gagne la partie.
 
-# Les barrières n'ont pas non plus le droit de bloquer complètement la ligne
-# d'arrivée.
+DUREE D'UNE PARTIE:
 
-# Les pions peuvent sauter par-dessus un pion adjacent.
-  Il ne peuvent pas se déplacer en diagonale (que en verticale ou en horizontale).
+(a définir)
 
 " Règles pour améliorer le jeu / le rendre different avec de nouvelles règles.
 
 # Le jeu se joue a plusieurs(2, 3, 4,....) et le nombre de case peut varier selon l'envie de jouer
 # une partie courte, moyenne ou longue. (5*5, 7*7, 9*9,....).
+
+# peut sauter une barrière lorsque il saute par dessus un pion.
+
 
 
 " (mettre chiffre) IMAGE DU JEU 
@@ -96,6 +103,8 @@ droite ou à gauche du pion sauté, mais
   print(jeu)
 
 " interface(si le temps) + IA
+
+ (mettre un timer pour le temps)
 
 
 
