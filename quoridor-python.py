@@ -8,5 +8,5 @@ def init_tableau():
 def affichage_tableau():
     return tableau
 #Tiago et Gabriel n'oubliez pas d'expliquer le code.
-#Tester indépendamment chaque script que vous créer
-#pour vérifier que tout fonctionne comme il faut.
+#Tester indépendamment chaque script que vous créer pour vérifier que tout fonctionne comme il faut.
+#Informer les autres des fusions
