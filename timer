@@ -1,5 +1,13 @@
-import time
+import time       
 
 def minuteur(time_sec):
    while time_sec:
-      mins, sec =
+      mins, sec = divmod(time_sec, 60)
+      timeformat = '{:02d}'.format(mins, sec)
+      print(timeformat,end='\r')
+      time.sleep(1)
+      time_sec -= 1
+# Indique que le minuteur est écoulé.       
+   print("Temps Terminé !")     
+
+minuteur(10)
