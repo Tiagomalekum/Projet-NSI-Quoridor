@@ -1,1 +1,5 @@
+import time
 
+def minuteur(time_sec):
+   while time_sec:
+      mins, sec =
