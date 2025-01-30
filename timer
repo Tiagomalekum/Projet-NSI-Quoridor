@@ -4,24 +4,28 @@ def minuteur(time_sec):
    while time_sec:
 
       mins, sec = (time_sec, 60)
-# Cette fonction permet de diviser time_sec par 60 pour obtenir le nombre de minutes (mins) et les secondes restantes (sec).
+      # Cette fonction permet de diviser time_sec par
+      # 60 pour obtenir le nombre de minutes 
+      # (mins) et les secondes restantes (sec).
 
       timeformat = '{:02d}'.format(mins, sec)
-# Cette ligne formate les minutes et les secondes avec deux chiffres, séparés par un deux-points.
+      # Cette ligne formate les minutes et les secondes
+      # avec deux chiffres, séparés par un deux-points.
       
       
       print(timeformat,end=' ')
-# Cette ligne affiche le minuteur 
+      # Cette ligne affiche le minuteur et 
+      # retourne au début de la ligne (\r) 
+      # pour écraser l'affichage précédent.
       
       time.sleep(1)
-# Cette fonction fait une pause d'une seconde à chaque itération.
+      # Cette fonction fait une pause d'une 
+      # seconde à chaque itération.
       
       time_sec -= 1
-# Cette ligne décrémente time_sec de 1 à chaque itération.
+      # Cette ligne décrémente time_sec de 1 à chaque itération.
     
    print("Temps Terminé !")     
 # Indique que le minuteur est écoulé.
 
 minuteur(10)
-
-
