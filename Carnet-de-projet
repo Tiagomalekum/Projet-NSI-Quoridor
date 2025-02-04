@@ -132,7 +132,7 @@ def minuteur(time_sec):
 minuteur(10)
 
 
-" interface graphique(si le temps) + IA
+" interface graphique(si le temps) + IA[si le temps aussi]
 
 
 
