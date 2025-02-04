@@ -97,10 +97,11 @@ DUREE D'UNE PARTIE:
 
 # Inialiasiton du plateau de jeu.
 
+# Timer crée.
+
 
 " interface graphique(si le temps) + IA
 
- (mettre un timer pour le temps)
 
 
 
