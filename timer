@@ -1,8 +1,8 @@
 import time       
 
+time_sec = 10
 def minuteur(time_sec):
    while time_sec > 0:
-      time_sec = 10
 
       print(time_sec,end=' ')
       # Affiche le minuteur et 
