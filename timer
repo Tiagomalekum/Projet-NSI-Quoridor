@@ -5,9 +5,7 @@ def minuteur(time_sec):
    while time_sec > 0:
 
       print(time_sec,end=' ')
-      # Affiche le minuteur et 
-      # retourne au début de la ligne (\r) 
-      # pour écraser l'affichage précédent.
+      # Affiche le minuteur
       
       time.sleep(1)
       # Cette fonction fait une pause d'une 
