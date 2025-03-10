@@ -3,22 +3,78 @@
 #############################################
 
 
-Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange composé
-de cellules hexagonales. Il a été inventé indépendamment par Piet Hein en 1942 et John Nash en 1948.
+1. Introduction
+Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
+composé de cellules hexagonales. Ce projet vise à développer une version physique et/ou numérique du jeu.
 
-Règles du jeu :
+2. Objectifs du Projet
 
-Le plateau est généralement de taille 11x11, mais d'autres tailles (13x13, 19x19) sont aussi courantes.
+Concevoir un plateau de jeu ergonomique et esthétique.
 
-Deux joueurs s'affrontent : l'un joue avec les pièces rouges, l'autre avec les pièces bleues.
-Chaque joueur joue à tour de rôle en plaçant une pièce de sa couleur sur une case vide.
-L'objectif est de créer une chaîne ininterrompue reliant les côtés opposés du plateau de sa couleur.
-Le joueur rouge doit connecter le haut et le bas du plateau.
-Le joueur bleu doit connecter la gauche et la droite du plateau.
-Une fois une pièce placée, elle ne peut plus être déplacée.
-Particularités du jeu :
-Aucun match nul n'est possible : un joueur gagne forcément (théorème de Nash).
-Le premier joueur a un avantage. Pour équilibrer, une règle courante permet au second joueur de prendre la place du premier coup s'il le souhaite (règle du swap).
+Développer une version numérique jouable en ligne ou (si possible) contre une intelligence artificielle.
+
+Offrir une expérience utilisateur assez fluide.
+
+Intégrer un mode multijoueur et des options de personnalisation.
+
+3. Analyse et Conception
+Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau
+en forme de losange constitué de cellules hexagonales. Il a été inventé indépendamment par Piet Hein et John Nash.
+
+1. Objectif du Jeu
+Chaque joueur doit créer un chemin ininterrompu reliant deux côtés opposés du plateau avec ses pièces.
+
+Le joueur Rouge doit connecter le haut et le bas du plateau.
+Le joueur Bleu doit connecter la gauche et la droite du plateau.
+
+2. Matériel
+
+Un plateau de jeu hexagonal (taille standard : 11x11, mais d’autres tailles comme 13x13 ou 19x19 sont utilisées).
+Deux ensembles de pièces distinctes (rouges et bleues).
+
+3. Déroulement d'une Partie
+Tour par tour : Les joueurs placent à tour de rôle une pièce de leur couleur sur une case vide du plateau.
+Placement irréversible : Une fois placée, une pièce ne peut plus être déplacée ni retirée.
+Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur.
+4. Règle du Swap (Équilibrage du Premier Coup)
+Pour éviter un avantage trop important au premier joueur, une règle courante permet au second joueur de choisir entre :
+
+Continuer normalement.
+Inverser les couleurs et jouer à la place du premier joueur.
+5. Fin de Partie et Victoire
+La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces.
+
+Règles du jeu : Deux joueurs s'affrontent en posant des pièces sur une grille hexagonale. Le but est de créer un chemin ininterrompu reliant deux côtés opposés.
+
+Version numérique : Programmation en Python, essayer de creer une Interface simple et accessible.
+
+4. Développement et Prototypage
+
+
+Implémentation d'une version basique en ligne avec HTML/CSS/JS.
+
+Ajout d'une intelligence artificielle avec des algorithmes de recherche.
+
+Tests et ajustements en fonction des retours utilisateurs.
+
+5. Gestion du Projet
+
+Planning : Organisation en sprints (Agile) avec des objectifs clairs.
+
+Ressources : Besoins en logiciels, matériaux et personnel.
+
+Contraintes : Budget, temps de développement, compatibilité des plateformes.
+
+6. Conclusion et Perspectives
+Une fois la version de base fonctionnelle, des améliorations comme des modes de jeu avancés, un tutoriel interactif et des classements en ligne pourront être ajoutés.
+
+7. Annexes
+
+Croquis et maquettes du plateau.
+
+Liste des outils et technologies utilisés.
+
+Documentation des algorithmes d'IA et de connectivité en ligne.
 
 # Je vais faire une présentation CANVA pour mieux présenter et trier les informations
 
