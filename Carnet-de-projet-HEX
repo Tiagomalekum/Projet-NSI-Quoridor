@@ -9,6 +9,7 @@ de cellules hexagonales. Il a été inventé indépendamment par Piet Hein en 19
 Règles du jeu :
 
 Le plateau est généralement de taille 11x11, mais d'autres tailles (13x13, 19x19) sont aussi courantes.
+
 Deux joueurs s'affrontent : l'un joue avec les pièces rouges, l'autre avec les pièces bleues.
 Chaque joueur joue à tour de rôle en plaçant une pièce de sa couleur sur une case vide.
 L'objectif est de créer une chaîne ininterrompue reliant les côtés opposés du plateau de sa couleur.
