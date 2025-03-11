@@ -36,11 +36,12 @@ Deux ensembles de pièces distinctes (rouges et bleues).
 Tour par tour : Les joueurs placent à tour de rôle une pièce de leur couleur sur une case vide du plateau.
 Placement irréversible : Une fois placée, une pièce ne peut plus être déplacée ni retirée.
 Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur.
+
 4. Règle du Swap (Équilibrage du Premier Coup)
 Pour éviter un avantage trop important au premier joueur, une règle courante permet au second joueur de choisir entre :
-
 Continuer normalement.
 Inverser les couleurs et jouer à la place du premier joueur.
+
 5. Fin de Partie et Victoire
 La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces.
 
@@ -50,31 +51,15 @@ Version numérique : Programmation en Python, essayer de creer une Interface sim
 
 4. Développement et Prototypage
 
-
-Implémentation d'une version basique en ligne avec HTML/CSS/JS.
+Implémentation d'une version basique en avec Python
+suivi de nouvelles règles pour plus d'originalité.
 
 Ajout d'une intelligence artificielle avec des algorithmes de recherche.
 
-Tests et ajustements en fonction des retours utilisateurs.
+Tests et ajustements
 
-5. Gestion du Projet
-
-Planning : Organisation en sprints (Agile) avec des objectifs clairs.
-
-Ressources : Besoins en logiciels, matériaux et personnel.
-
-Contraintes : Budget, temps de développement, compatibilité des plateformes.
-
-6. Conclusion et Perspectives
+5. Conclusion et Perspectives
 Une fois la version de base fonctionnelle, des améliorations comme des modes de jeu avancés, un tutoriel interactif et des classements en ligne pourront être ajoutés.
-
-7. Annexes
-
-Croquis et maquettes du plateau.
-
-Liste des outils et technologies utilisés.
-
-Documentation des algorithmes d'IA et de connectivité en ligne.
 
 # Je vais faire une présentation CANVA pour mieux présenter et trier les informations
 
