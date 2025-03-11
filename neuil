@@ -1,0 +1,20 @@
+def rendu(s):
+    ra = s % 5
+    a = (s-ra)//5
+    rb = s-a*5
+    b = 0
+    c = 0
+    if s % 2 == 0:
+        b = rb//2
+    else:
+        b = (rb-1)//2
+        c = 1
+    print(a, b, c)
+    
+
+# Tests
+
+assert tuple(rendu(7)) == (1, 1, 0)
+assert tuple(rendu(10)) == (2, 0, 0)
+assert tuple(rendu(13)) == (2, 1, 1)
+assert tuple(rendu(32)) == (6, 1, 0)
