@@ -8,4 +8,4 @@ jeu = [
       [1,2,1,2,1,2,1],
       ]
 
-#1 = hexagone, 2 = emplacement mur vide
+# grille 4x4, 1 = hexagone, 2 = emplacement mur vide
