@@ -62,9 +62,9 @@ for row in board:
         print(f"Case {cell['position']} : Voisins -> {cell['neighbors']} | Occupée par -> {cell['occupied_by']}")
 
 # Exemple d'utilisation de la fonction play_move
-play_move("Joueur 1", (2, 2))
-play_move("Joueur 2", (2, 2))
-play_move("Joueur 2", (3, 3))
+jouer("Joueur 1", (2, 2))
+jouer("Joueur 2", (2, 2))
+jouer("Joueur 2", (3, 3))
 
 # Afficher le plateau après quelques mouvements
-afficher_plateau()
+affichage()
