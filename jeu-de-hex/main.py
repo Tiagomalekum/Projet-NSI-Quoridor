@@ -8,7 +8,7 @@
 # Définir la taille de la grille
 n = 5
 
-symbol = "A"
+symbol = ""
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
@@ -82,6 +82,8 @@ def jouer(position):
 
 
 def init():
+    global symbol
+    symbol = "A"
     init = True
     
     # Réinitialiser le plateau de jeu
