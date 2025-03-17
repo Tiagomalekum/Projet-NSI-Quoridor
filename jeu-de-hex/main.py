@@ -1,10 +1,17 @@
+################################################################################
+#                                                                              #
+#                          PROJET DE HEX EN PYTHON                             #
+#                                                                              #
+################################################################################
+
+
 # Définir la taille de la grille
 n = 5
 
+symbol = "A"
+
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
-
-init = True
 
 board = []
 
@@ -35,7 +42,13 @@ for i in range(n):
     board.append(row)
 
 
-# Nouvelle fonction pour afficher le plateau de jeu
+# Ajout d'une structure pour garder trace des coups joués
+joueur_positions = {
+    "A": [],
+    "B": []
+}
+
+
 def affichage():
     for row in board:
         row_display = []
@@ -44,33 +57,48 @@ def affichage():
                 row_display.append(cell["occupied_by"])  # Affiche le symbole du joueur
             else:
                 row_display.append(".")  # Une case vide est représentée par un point
-        print(" ".join(row_display))
-    print()  # Ligne vide pour séparer les affichages
+        print(" ".join(row_display)) # Concatènation
+    print()  # Ligne vide pour séparer les lignes    
 
-
-# Fonction pour qu'un joueur joue
-def jouer(player, symbol, position):
+def jouer(position):
+    global symbol
     x, y = position
     if 0 <= x < n and 0 <= y < n:
         cell = board[x][y]
         if cell["occupied_by"] is None:
             cell["occupied_by"] = symbol
-            if init == False:
-                print(f"Le joueur {player} a joué à la position {position}.")
-                affichage()
+            joueur_positions[symbol].append(position)
+            print(f"Le joueur {symbol} a joué à la position {position}.")
+            if symbol == "A":
+                symbol = "B"
+            elif symbol == "B":
+                symbol = "A"
+            affichage()
+            print(f"Au joueur {symbol} de jouer.")
         else:
             print(f"La case {position} est déjà occupée.")
     else:
         print("Position invalide.")
 
 
-# Fonction pour réinitialiser la partie
-def reinit():
+def init():
     init = True
-    jouer("Joueur A", "A", (0, 2))
-    jouer("Joueur B", "B", (2, 0))
+    
+    # Réinitialiser le plateau de jeu
+    for row in board:
+        for cell in row:
+            cell["occupied_by"] = None
+    
+    # Réinitialiser les coups des joueurs
+    joueur_positions["A"] = []
+    joueur_positions["B"] = []
+
     print("La partie commence.")
     affichage()
-    init = False
+    print("Au joueur A de jouer.")
 
-reinit()
+# Affichage des voisins
+for row in board:
+    for cell in row:
+        print(f"Case{cell['position']} : Voisins -> {cell['neighbors']}")
+init()
