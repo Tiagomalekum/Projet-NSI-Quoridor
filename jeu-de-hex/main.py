@@ -5,10 +5,11 @@
 ################################################################################
 
 
-# Définir la taille de la grille
-n = 5
+# Définitions:
 
+n = 5 # Taille de la grille
 symbol = ""
+
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
@@ -42,11 +43,13 @@ for i in range(n):
     board.append(row)
 
 
+
 # Ajout d'une structure pour garder trace des coups joués
 joueur_positions = {
     "A": [],
     "B": []
 }
+
 
 
 def affichage():
@@ -59,6 +62,8 @@ def affichage():
                 row_display.append(".")  # Une case vide est représentée par un point
         print(" ".join(row_display)) # Concatènation
     print()  # Ligne vide pour séparer les lignes    
+
+
 
 def jouer(position):
     global symbol
@@ -81,10 +86,10 @@ def jouer(position):
         print("Position invalide.")
 
 
+
 def init():
     global symbol
     symbol = "A"
-    init = True
     
     # Réinitialiser le plateau de jeu
     for row in board:
@@ -97,10 +102,19 @@ def init():
 
     print("La partie commence.")
     affichage()
-    print("Au joueur A de jouer.")
+    print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
 
-# Affichage des voisins
-for row in board:
-    for cell in row:
-        print(f"Case{cell['position']} : Voisins -> {cell['neighbors']}")
+
+
+def voisins():
+    global symbol
+    for row in board:
+        for cell in row:
+            print(f"Case{cell['position']} : Voisins -> {cell['neighbors']}")
+    
+    print("Tableau:")
+    affichage()
+    print(f"Au joueur {symbol} de jouer.")
+
+
 init()
