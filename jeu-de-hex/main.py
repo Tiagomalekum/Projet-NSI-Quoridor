@@ -7,9 +7,8 @@
 
 # Définitions:
 
-n = 5 # Taille de la grille
-symbol = ""
-
+n = 5  # Taille de la grille
+symbol = ""  # Symbole du joueur courant
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
@@ -38,19 +37,19 @@ for i in range(n):
         row.append({
             "position": (i, j),
             "neighbors": neighbors,
-            "occupied_by": None  # Ajout d'un champ pour indiquer si la case est occupée par un joueur
+            "occupied_by": None  # Champ pour indiquer si la case est occupée par un joueur
         })
     board.append(row)
 
-
-
-# Ajout d'une structure pour garder trace des coups joués
+# Structure pour garder trace des coups joués
 joueur_positions = {
     "A": [],
     "B": []
 }
 
 
+
+# Fonction d'affichage du plateau
 
 def affichage():
     for row in board:
@@ -60,20 +59,66 @@ def affichage():
                 row_display.append(cell["occupied_by"])  # Affiche le symbole du joueur
             else:
                 row_display.append(".")  # Une case vide est représentée par un point
-        print(" ".join(row_display)) # Concatènation
+        print(" ".join(row_display))  # Concaténation
     print()  # Ligne vide pour séparer les lignes    
 
 
 
+# Fonction de recherche en profondeur (DFS) pour vérifier la victoire
+def dfs(x, y, visited, joueur):
+    if joueur == "A" and x == n - 1:  # Si on atteint le bord inférieur
+        return True
+    if joueur == "B" and y == n - 1:  # Si on atteint le bord droit
+        return True
+    
+    visited.add((x, y))  # Marquer la case comme visitée
+    for (nx, ny) in board[x][y]["neighbors"]:
+        if (nx, ny) not in visited and board[nx][ny]["occupied_by"] == joueur:
+            if dfs(nx, ny, visited, joueur):
+                return True
+    return False
+
+
+    
+# Fonction de vérification de victoire
+def verifier_victoire():
+    global symbol
+    visited = set()
+
+    # Pour le joueur A, vérifier s'il a réussi à relier le bord supérieur au bord inférieur
+    if symbol == "A":
+        for j in range(n):
+            if board[0][j]["occupied_by"] == "A" and (0, j) not in visited:
+                if dfs(0, j, visited, "A"):
+                    affichage()
+                    print("Le joueur A a gagné !")
+                    return True
+
+    # Pour le joueur B, vérifier s'il a réussi à relier le bord gauche au bord droit
+    elif symbol == "B":
+        for i in range(n):
+            if board[i][0]["occupied_by"] == "B" and (i, 0) not in visited:
+                if dfs(i, 0, visited, "B"):
+                    affichage()
+                    print("Le joueur B a gagné !")
+                    return True
+
+    return False
+
+
+# La fonction jouer() est appelée pour effectuer un mouvement
 def jouer(position):
     global symbol
     x, y = position
-    if 0 <= x < n and 0 <= y < n:
+    if 0 <= x < n and 0 <= y < n:  # Vérifier si la position est valide
         cell = board[x][y]
-        if cell["occupied_by"] is None:
+        if cell["occupied_by"] is None:  # Si la case est vide
             cell["occupied_by"] = symbol
             joueur_positions[symbol].append(position)
             print(f"Le joueur {symbol} a joué à la position {position}.")
+            if verifier_victoire():
+                return
+            # Passer au joueur suivant
             if symbol == "A":
                 symbol = "B"
             elif symbol == "B":
@@ -81,15 +126,16 @@ def jouer(position):
             affichage()
             print(f"Au joueur {symbol} de jouer.")
         else:
-            print(f"La case {position} est déjà occupée.")
+            print(f"La case {position} est déjà occupée.")  # Case déjà occupée
     else:
-        print("Position invalide.")
+        print("Position invalide.")  # Position déjà prise
 
 
-
+    
+# Initialisation du jeu
 def init():
     global symbol
-    symbol = "A"
+    symbol = "A"  # Le joueur A commence
     
     # Réinitialiser le plateau de jeu
     for row in board:
@@ -102,19 +148,22 @@ def init():
 
     print("La partie commence.")
     affichage()
-    print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
+    print("Au joueur A de jouer. (\"jouer((x, y))\" pour jouer!!)")
 
-
-
-def voisins():
-    global symbol
-    for row in board:
-        for cell in row:
-            print(f"Case{cell['position']} : Voisins -> {cell['neighbors']}")
-    
-    print("Tableau:")
-    affichage()
-    print(f"Au joueur {symbol} de jouer.")
-
-
+# Initialisation
 init()
+
+#  Teste: ce teste montre que nimporte quelle chemin sans interuption donne une win
+#jouer((0, 1))
+#jouer((0, 4))
+#jouer((0, 2))
+#jouer((1, 4))
+#jouer((1, 2))
+#jouer((0, 0))
+#jouer((2, 2))
+#jouer((1, 1))
+#jouer((3, 1))
+#jouer((2, 4))
+#jouer((3, 2))
+#jouer((3, 0))
+#jouer((4, 0))
