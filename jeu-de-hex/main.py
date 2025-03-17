@@ -26,11 +26,30 @@ for i in range(n):
         
         row.append({
             "position": (i, j),
-            "neighbors": neighbors
+            "neighbors": neighbors,
+            "occupied_by": None  # Ajout d'un champ pour indiquer si la case est occupée par un joueur
         })
     board.append(row)
 
-# Affichage du plateau avec les voisins
+# Fonction pour qu'un joueur joue
+def play_move(player, position):
+    x, y = position
+    if 0 <= x < n and 0 <= y < n:
+        cell = board[x][y]
+        if cell["occupied_by"] is None:
+            cell["occupied_by"] = player
+            print(f"Le joueur {player} a joué à la position {position}.")
+        else:
+            print(f"La case {position} est déjà occupée.")
+    else:
+        print("Position invalide.")
+
+# Affichage du plateau avec les voisins et l'état d'occupation
 for row in board:
     for cell in row:
-        print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
+        print(f"Case {cell['position']} : Voisins -> {cell['neighbors']} | Occupée par -> {cell['occupied_by']}")
+
+# Exemple d'utilisation de la fonction play_move
+play_move("Joueur 1", (2, 2))
+play_move("Joueur 2", (2, 2))
+play_move("Joueur 2", (3, 3))
