@@ -3,6 +3,9 @@ n = 5
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
+
+init = True
+
 board = []
 
 for i in range(n):
@@ -31,18 +34,6 @@ for i in range(n):
         })
     board.append(row)
 
-# Fonction pour qu'un joueur joue
-def jouer(player, position):
-    x, y = position
-    if 0 <= x < n and 0 <= y < n:
-        cell = board[x][y]
-        if cell["occupied_by"] is None:
-            cell["occupied_by"] = player
-            print(f"Le joueur {player} a joué à la position {position}.")
-        else:
-            print(f"La case {position} est déjà occupée.")
-    else:
-        print("Position invalide.")
 
 # Nouvelle fonction pour afficher le plateau de jeu
 def affichage():
@@ -50,21 +41,36 @@ def affichage():
         row_display = []
         for cell in row:
             if cell["occupied_by"]:
-                row_display.append(cell["occupied_by"][0])  # Affiche la première lettre du joueur
+                row_display.append(cell["occupied_by"])  # Affiche le symbole du joueur
             else:
                 row_display.append(".")  # Une case vide est représentée par un point
         print(" ".join(row_display))
     print()  # Ligne vide pour séparer les affichages
 
-# Affichage initial du plateau avec les voisins et l'état d'occupation
-for row in board:
-    for cell in row:
-        print(f"Case {cell['position']} : Voisins -> {cell['neighbors']} | Occupée par -> {cell['occupied_by']}")
 
-# Exemple d'utilisation de la fonction play_move
-jouer("Joueur 1", (2, 2))
-jouer("Joueur 2", (2, 2))
-jouer("Joueur 2", (3, 3))
+# Fonction pour qu'un joueur joue
+def jouer(player, symbol, position):
+    x, y = position
+    if 0 <= x < n and 0 <= y < n:
+        cell = board[x][y]
+        if cell["occupied_by"] is None:
+            cell["occupied_by"] = symbol
+            if init == False:
+                print(f"Le joueur {player} a joué à la position {position}.")
+                affichage()
+        else:
+            print(f"La case {position} est déjà occupée.")
+    else:
+        print("Position invalide.")
 
-# Afficher le plateau après quelques mouvements
-affichage()
+
+# Fonction pour réinitialiser la partie
+def reinit():
+    init = True
+    jouer("Joueur A", "A", (0, 2))
+    jouer("Joueur B", "B", (2, 0))
+    print("La partie commence.")
+    affichage()
+    init = False
+
+reinit()
