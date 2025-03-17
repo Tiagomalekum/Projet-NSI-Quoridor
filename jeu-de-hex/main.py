@@ -32,7 +32,7 @@ for i in range(n):
     board.append(row)
 
 # Fonction pour qu'un joueur joue
-def play_move(player, position):
+def jouer(player, position):
     x, y = position
     if 0 <= x < n and 0 <= y < n:
         cell = board[x][y]
@@ -44,7 +44,19 @@ def play_move(player, position):
     else:
         print("Position invalide.")
 
-# Affichage du plateau avec les voisins et l'état d'occupation
+# Nouvelle fonction pour afficher le plateau de jeu
+def affichage():
+    for row in board:
+        row_display = []
+        for cell in row:
+            if cell["occupied_by"]:
+                row_display.append(cell["occupied_by"][0])  # Affiche la première lettre du joueur
+            else:
+                row_display.append(".")  # Une case vide est représentée par un point
+        print(" ".join(row_display))
+    print()  # Ligne vide pour séparer les affichages
+
+# Affichage initial du plateau avec les voisins et l'état d'occupation
 for row in board:
     for cell in row:
         print(f"Case {cell['position']} : Voisins -> {cell['neighbors']} | Occupée par -> {cell['occupied_by']}")
@@ -53,3 +65,6 @@ for row in board:
 play_move("Joueur 1", (2, 2))
 play_move("Joueur 2", (2, 2))
 play_move("Joueur 2", (3, 3))
+
+# Afficher le plateau après quelques mouvements
+afficher_plateau()
