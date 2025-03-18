@@ -148,22 +148,7 @@ def init():
 
     print("La partie commence.")
     affichage()
-    print("Au joueur A de jouer. (\"jouer((x, y))\" pour jouer!!)")
+    print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
 
 # Initialisation
 init()
-
-#  Teste: ce teste montre que nimporte quelle chemin sans interuption donne une win
-#jouer((0, 1))
-#jouer((0, 4))
-#jouer((0, 2))
-#jouer((1, 4))
-#jouer((1, 2))
-#jouer((0, 0))
-#jouer((2, 2))
-#jouer((1, 1))
-#jouer((3, 1))
-#jouer((2, 4))
-#jouer((3, 2))
-#jouer((3, 0))
-#jouer((4, 0))
