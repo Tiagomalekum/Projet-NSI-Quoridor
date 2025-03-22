@@ -17,37 +17,6 @@ board = []
 
 
 
-
-# Représentation du plateau, chaque case est un dictionnaire
-# qui contient les voisins possibles sous forme de tuples de coordonnées
-for i in range(n):
-    row = []
-    for j in range(n):
-        neighbors = []
-        
-        # Ajouter des voisins basés sur des règles de voisinage pour un hexagone
-        if i > 0:  # voisin en haut
-            neighbors.append((i-1, j))
-        if i < n-1:  # voisin en bas
-            neighbors.append((i+1, j))
-        if j > 0:  # voisin à gauche
-            neighbors.append((i, j-1))
-        if j < n-1:  # voisin à droite
-            neighbors.append((i, j+1))
-        if i > 0 and j < n-1:  # voisin en haut à droite
-            neighbors.append((i-1, j+1))
-        if i < n-1 and j > 0:  # voisin en bas à gauche
-            neighbors.append((i+1, j-1))
-        
-        row.append({
-            "position": (i, j),
-            "neighbors": neighbors,
-            "occupied_by": None  # Champ pour indiquer si la case est occupée par un joueur
-        })
-    board.append(row)
-
-
-
 # Structure pour garder trace des coups joués
 joueur_positions = {
     "A": [],
@@ -56,8 +25,11 @@ joueur_positions = {
 
 
 
+
+
 # Fonction d'affichage du plateau
 def affichage():
+    c = 0
     for row in board:
         row_display = []
         for cell in row:
@@ -65,7 +37,8 @@ def affichage():
                 row_display.append(cell["occupied_by"])  # Affiche le symbole du joueur
             else:
                 row_display.append(".")  # Une case vide est représentée par un point
-        print(" ".join(row_display))  # Concaténation
+        c += 1
+        print(" " * c + " ".join(row_display))  # Concaténation et décalage des colonnes
     print()  # Ligne vide pour séparer les lignes    
 
 
@@ -169,7 +142,7 @@ def jouer(position):
                         elif symbol == "B":
                             symbol = "A"
                             print(f"Au joueur {symbol} de jouer.")
-                        change_time(10 * n // 2 + 1)
+                        change_time(2 * n + n + 1)
                 else:
                      print(f"La case {position} est déjà occupée.")  # Case déjà occupée
         else:
@@ -184,8 +157,8 @@ def init(number):
     if not (type(number) == int):
         print("Le nombre de cases doit être un entier.")
         return
-    if not (3 <= number <= 30):
-        print("Le nombre de cases doit être compris entre 3 et 30.")
+    if not (5 <= number <= 25):
+        print("Le nombre de cases doit être compris entre 5 et 25.")
         return
 
     
@@ -194,7 +167,7 @@ def init(number):
     n = number
     partie_t = False
     symbol = "A"  # Le joueur A commence
-    time_sec = 10 * n // 2
+    time_sec = 2 * n + n
     
     # Réinitialiser le plateau de jeu
     board = []
@@ -243,6 +216,3 @@ def donner_neighbors():
     for row in board:
         for cell in row:
             print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
-
-# Initialisation
-init(5)
