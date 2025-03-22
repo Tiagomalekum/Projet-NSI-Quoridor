@@ -113,8 +113,7 @@ def change_time(time):
             
 def minuteur_start():
     def minuteur():
-        global partie_t
-        global time_sec
+        global partie_t, time_sec
         while time_sec > 0:
             print(time_sec,end=' ')
             # Affiche le minuteur
@@ -137,8 +136,7 @@ def minuteur_start():
 
 # La fonction jouer() est appelée pour effectuer un mouvement
 def jouer(position):
-    global partie_t
-    global symbol
+    global partie_t,symbol, n
     if partie_t:
         print("Impossibilité de jouer, la partie est terminée. Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
     else:
@@ -171,7 +169,7 @@ def jouer(position):
                         elif symbol == "B":
                             symbol = "A"
                             print(f"Au joueur {symbol} de jouer.")
-                        change_time(21)
+                        change_time(10 * n // 2 + 1)
                 else:
                      print(f"La case {position} est déjà occupée.")  # Case déjà occupée
         else:
@@ -180,19 +178,42 @@ def jouer(position):
 
 
 # Initialisation du jeu
-def init():
+def init(number):
     """Reinitialise la partie."""
-    global partie_t
+    global n, board, partie_t, symbol, time_sec
+
+    n = number
     partie_t = False
-    global symbol
     symbol = "A"  # Le joueur A commence
-    global time_sec
-    time_sec = 20
+    time_sec = 10 * n // 2
     
     # Réinitialiser le plateau de jeu
-    for row in board:
-        for cell in row:
-            cell["occupied_by"] = None
+    board = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            neighbors = []
+
+            # Ajouter des voisins basés sur des règles de voisinage pour un hexagone
+            if i > 0:  # voisin en haut
+                neighbors.append((i-1, j))
+            if i < n-1:  # voisin en bas
+                neighbors.append((i+1, j))
+            if j > 0:  # voisin à gauche
+                neighbors.append((i, j-1))
+            if j < n-1:  # voisin à droite
+                neighbors.append((i, j+1))
+            if i > 0 and j < n-1:  # voisin en haut à droite
+                neighbors.append((i-1, j+1))
+            if i < n-1 and j > 0:  # voisin en bas à gauche
+                neighbors.append((i+1, j-1))
+
+            row.append({
+                "position": (i, j),
+                "neighbors": neighbors,
+                "occupied_by": None  # Champ pour indiquer si la case est occupée par un joueur
+            })
+        board.append(row)
     
     # Réinitialiser les coups des joueurs
     joueur_positions["A"] = []
@@ -215,4 +236,4 @@ def donner_neighbors():
             print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
 
 # Initialisation
-init()
+init(5)
