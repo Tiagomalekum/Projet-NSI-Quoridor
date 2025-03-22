@@ -211,8 +211,3 @@ def init(number):
 
 def donner_occupes():
     print(joueur_positions)
-    
-def donner_neighbors():
-    for row in board:
-        for cell in row:
-            print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
