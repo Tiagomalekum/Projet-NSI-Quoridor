@@ -4,13 +4,19 @@
 #                                                                              #
 ################################################################################
 
-# Définitions:
-
 import time
+import tkinter as tk
+import threading
+
+
+# Définitions:
 n = 5  # Taille de la grille
 symbol = ""  # Symbole du joueur courant
 partie_t = False
 board = []
+
+
+
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
@@ -97,26 +103,28 @@ def a_gagne(joueur):
     
     return False
 
-
-def minuteur(time_sec):
-    global partie_t
-    while time_sec > 0:
-        print(time_sec,end=' ')
-        # Affiche le minuteur
-      
-        time.sleep(1)
-        # Cette fonction fait une pause d'une 
-        # seconde à chaque itération.
+def foo(sec):
+    def minuteur():
+        global partie_t
+        time_sec = sec
+        while time_sec > 0:
+            print(time_sec,end=' ')
+            # Affiche le minuteur
+          
+            time.sleep(1)
+            # Cette fonction fait une pause d'une 
+            # seconde à chaque itération.
+            
+            time_sec -= 1
+            # Cette ligne enlève 1 au timer après 1 seconde.
         
-        time_sec -= 1
-        # Cette ligne enlève 1 au timer après 1 seconde.
-    
-    if time_sec <= 0:
-        if symbol == "A":
-           print("Temps écoulé! Le joueur B a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
-        if symbol == "B":
-           print("Temps écoulé! Le joueur A a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
-        partie_t = True
+        if time_sec <= 0:
+            if symbol == "A":
+               print("Temps écoulé! Le joueur B a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
+            if symbol == "B":
+               print("Temps écoulé! Le joueur A a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
+            partie_t = True
+    threading.Thread(target=minuteur).start()
         
 
 # La fonction jouer() est appelée pour effectuer un mouvement
@@ -155,7 +163,7 @@ def jouer(position):
                         elif symbol == "B":
                             symbol = "A"
                             print(f"Au joueur {symbol} de jouer.")
-                        minuteur(15)
+                        foo(15)
                 else:
                      print(f"La case {position} est déjà occupée.")  # Case déjà occupée
         else:
@@ -183,7 +191,7 @@ def init():
     print("La partie commence.")
     affichage()
     print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
-    minuteur(15)
+    foo(15)
 
 
 
