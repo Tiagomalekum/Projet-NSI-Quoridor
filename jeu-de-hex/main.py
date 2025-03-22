@@ -48,7 +48,6 @@ joueur_positions = {
 }
 
 
-
 # Fonction d'affichage du plateau
 
 def affichage():
@@ -63,49 +62,6 @@ def affichage():
     print()  # Ligne vide pour séparer les lignes    
 
 
-
-# Fonction de recherche en profondeur (DFS) pour vérifier la victoire
-def dfs(x, y, visited, joueur):
-    if joueur == "A" and x == n - 1:  # Si on atteint le bord inférieur
-        return True
-    if joueur == "B" and y == n - 1:  # Si on atteint le bord droit
-        return True
-    
-    visited.add((x, y))  # Marquer la case comme visitée
-    for (nx, ny) in board[x][y]["neighbors"]:
-        if (nx, ny) not in visited and board[nx][ny]["occupied_by"] == joueur:
-            if dfs(nx, ny, visited, joueur):
-                return True
-    return False
-
-
-    
-# Fonction de vérification de victoire
-def verifier_victoire():
-    global symbol
-    visited = set()
-
-    # Pour le joueur A, vérifier s'il a réussi à relier le bord supérieur au bord inférieur
-    if symbol == "A":
-        for j in range(n):
-            if board[0][j]["occupied_by"] == "A" and (0, j) not in visited:
-                if dfs(0, j, visited, "A"):
-                    affichage()
-                    print("Le joueur A a gagné !")
-                    return True
-
-    # Pour le joueur B, vérifier s'il a réussi à relier le bord gauche au bord droit
-    elif symbol == "B":
-        for i in range(n):
-            if board[i][0]["occupied_by"] == "B" and (i, 0) not in visited:
-                if dfs(i, 0, visited, "B"):
-                    affichage()
-                    print("Le joueur B a gagné !")
-                    return True
-
-    return False
-
-
 # La fonction jouer() est appelée pour effectuer un mouvement
 def jouer(position):
     global symbol
@@ -116,8 +72,6 @@ def jouer(position):
             cell["occupied_by"] = symbol
             joueur_positions[symbol].append(position)
             print(f"Le joueur {symbol} a joué à la position {position}.")
-            if verifier_victoire():
-                return
             # Passer au joueur suivant
             if symbol == "A":
                 symbol = "B"
@@ -128,8 +82,7 @@ def jouer(position):
         else:
             print(f"La case {position} est déjà occupée.")  # Case déjà occupée
     else:
-        print("Position invalide.")  # Position déjà prise
-
+        print("Position invalide.")  # Position non-existante
 
     
 # Initialisation du jeu
