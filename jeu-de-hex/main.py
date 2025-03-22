@@ -4,17 +4,16 @@
 #                                                                              #
 ################################################################################
 
-
 # Définitions:
 
 n = 5  # Taille de la grille
 symbol = ""  # Symbole du joueur courant
+board = []
+
+
 
 # Représentation du plateau, chaque case est un dictionnaire
 # qui contient les voisins possibles sous forme de tuples de coordonnées
-
-board = []
-
 for i in range(n):
     row = []
     for j in range(n):
@@ -41,6 +40,8 @@ for i in range(n):
         })
     board.append(row)
 
+
+
 # Structure pour garder trace des coups joués
 joueur_positions = {
     "A": [],
@@ -48,8 +49,8 @@ joueur_positions = {
 }
 
 
-# Fonction d'affichage du plateau
 
+# Fonction d'affichage du plateau
 def affichage():
     for row in board:
         row_display = []
@@ -60,6 +61,7 @@ def affichage():
                 row_display.append(".")  # Une case vide est représentée par un point
         print(" ".join(row_display))  # Concaténation
     print()  # Ligne vide pour séparer les lignes    
+
 
 
 # La fonction jouer() est appelée pour effectuer un mouvement
@@ -84,6 +86,7 @@ def jouer(position):
     else:
         print("Position invalide.")  # Position non-existante
 
+
     
 # Initialisation du jeu
 def init():
@@ -102,6 +105,17 @@ def init():
     print("La partie commence.")
     affichage()
     print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
+
+
+
+def show_neighbors():
+    for row in board:
+        for cell in row:
+            print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
+
+
+
+
 
 # Initialisation
 init()
