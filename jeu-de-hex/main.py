@@ -10,7 +10,7 @@ import threading
 
 
 # Définitions:
-n = 5  # Taille de la grille
+n = 5 # Taille de la grille
 symbol = ""  # Symbole du joueur courant
 partie_t = False
 board = []
@@ -103,10 +103,18 @@ def a_gagne(joueur):
     
     return False
 
-def foo(sec):
+
+
+def change_time(time):
+    global time_sec
+    time_sec = time
+
+
+            
+def minuteur_start():
     def minuteur():
         global partie_t
-        time_sec = sec
+        global time_sec
         while time_sec > 0:
             print(time_sec,end=' ')
             # Affiche le minuteur
@@ -163,7 +171,7 @@ def jouer(position):
                         elif symbol == "B":
                             symbol = "A"
                             print(f"Au joueur {symbol} de jouer.")
-                        foo(15)
+                        change_time(21)
                 else:
                      print(f"La case {position} est déjà occupée.")  # Case déjà occupée
         else:
@@ -178,6 +186,8 @@ def init():
     partie_t = False
     global symbol
     symbol = "A"  # Le joueur A commence
+    global time_sec
+    time_sec = 20
     
     # Réinitialiser le plateau de jeu
     for row in board:
@@ -190,8 +200,8 @@ def init():
 
     print("La partie commence.")
     affichage()
-    print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
-    foo(15)
+    print("Au joueur A de jouer. (\"jouer((ligne,colonne))\" pour jouer!!)")
+    minuteur_start()
 
 
 
