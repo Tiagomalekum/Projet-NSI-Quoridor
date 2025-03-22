@@ -6,6 +6,7 @@
 
 # Définitions:
 
+import time
 n = 5  # Taille de la grille
 symbol = ""  # Symbole du joueur courant
 partie_t = False
@@ -97,6 +98,26 @@ def a_gagne(joueur):
     return False
 
 
+def minuteur(time_sec):
+    global partie_t
+    while time_sec > 0:
+        print(time_sec,end=' ')
+        # Affiche le minuteur
+      
+        time.sleep(1)
+        # Cette fonction fait une pause d'une 
+        # seconde à chaque itération.
+        
+        time_sec -= 1
+        # Cette ligne enlève 1 au timer après 1 seconde.
+    
+    if time_sec <= 0:
+        if symbol == "A":
+           print("Temps écoulé! Le joueur B a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
+        if symbol == "B":
+           print("Temps écoulé! Le joueur A a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
+        partie_t = True
+        
 
 # La fonction jouer() est appelée pour effectuer un mouvement
 def jouer(position):
@@ -134,6 +155,7 @@ def jouer(position):
                         elif symbol == "B":
                             symbol = "A"
                             print(f"Au joueur {symbol} de jouer.")
+                        minuteur(15)
                 else:
                      print(f"La case {position} est déjà occupée.")  # Case déjà occupée
         else:
@@ -161,6 +183,7 @@ def init():
     print("La partie commence.")
     affichage()
     print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
+    minuteur(15)
 
 
 
