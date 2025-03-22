@@ -180,8 +180,17 @@ def jouer(position):
 # Initialisation du jeu
 def init(number):
     """Reinitialise la partie."""
-    global n, board, partie_t, symbol, time_sec
 
+    if not (type(number) == int):
+        print("Le nombre de cases doit être un entier.")
+        return
+    if not (3 <= number <= 30):
+        print("Le nombre de cases doit être compris entre 3 et 30.")
+        return
+
+    
+    global n, board, partie_t, symbol, time_sec
+    
     n = number
     partie_t = False
     symbol = "A"  # Le joueur A commence
