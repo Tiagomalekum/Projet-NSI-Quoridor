@@ -39,11 +39,15 @@ for i in range(n):
         })
     board.append(row)
 
+
+
 # Structure pour garder trace des coups joués
 joueur_positions = {
     "A": [],
     "B": []
 }
+
+
 
 # Fonction d'affichage du plateau
 def affichage():
@@ -56,6 +60,8 @@ def affichage():
                 row_display.append(".")  # Une case vide est représentée par un point
         print(" ".join(row_display))  # Concaténation
     print()  # Ligne vide pour séparer les lignes    
+
+
 
 def est_chemin(position, joueur, visited):
     x, y = position
@@ -74,6 +80,8 @@ def est_chemin(position, joueur, visited):
     
     return False
 
+
+
 def a_gagne(joueur):
     if joueur == "A":
         for i in range(n):
@@ -87,6 +95,8 @@ def a_gagne(joueur):
                     return True
     
     return False
+
+
 
 # La fonction jouer() est appelée pour effectuer un mouvement
 def jouer(position):
@@ -112,6 +122,9 @@ def jouer(position):
                     elif a_gagne("B"):
                         print("Le joueur B a gagné! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
                         partie_t = True
+                    elif all(cell["occupied_by"] is not None for row in board for cell in row):
+                        print("Il y a ex-aequo! Entrez \"init(nombre de cases & colonnes)\" pour commencer une nouvelle partie.")
+                        partie_t = True
 
                     else:
                         # Passer au joueur suivant
@@ -126,8 +139,11 @@ def jouer(position):
         else:
             print("Position invalide.")  # Position non-existante
 
+
+
 # Initialisation du jeu
 def init():
+    """Reinitialise la partie."""
     global partie_t
     partie_t = False
     global symbol
@@ -147,7 +163,12 @@ def init():
     print("Au joueur A de jouer. (\"jouer((x,y))\" pour jouer!!)")
 
 
-def show_neighbors():
+
+
+def donner_occupes():
+    print(joueur_positions)
+    
+def donner_neighbors():
     for row in board:
         for cell in row:
             print(f"Case {cell['position']} : Voisins -> {cell['neighbors']}")
