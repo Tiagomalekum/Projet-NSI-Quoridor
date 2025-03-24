@@ -98,10 +98,10 @@ def pause_resume_timer():
     pause_button.config(text="Reprendre" if pause_timer else "Pause")
 
 def jouer(position):
-    global partie_t, symbol, n, moves_played
+    global partie_t, symbol, n, moves_played, pause_timer
     if partie_t:
         messagebox.showwarning("Partie terminée", "Impossibilité de jouer, la partie est terminée. ")
-    else:
+    elif not pause_timer:
         x, y = position
         if 0 <= x < n and 0 <= y < n:  # Vérifier si la position est valide
             cell = board[x][y]
