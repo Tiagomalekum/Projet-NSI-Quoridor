@@ -1,10 +1,3 @@
-################################################################################
-#                                                                              #
-#                          PROJET DE HEX EN PYTHON                             #
-#                                                                              #
-################################################################################
-
-
 import time
 import threading
 from tkinter import *
@@ -83,7 +76,7 @@ def minuteur_start():
         time_label.config(text=f"Time left: {time_sec}s")
         while time_sec > 0 and not partie_t:
             if not pause_timer:
-                sleep_time = max(0.1, 1 - (moves_played * 0.05))  # Réduire le temps de sommeil progressivement
+                sleep_time = max(0.1, 1 - (moves_played * 0.03))  # Réduire le temps de sommeil progressivement
                 time.sleep(sleep_time)
                 time_sec -= 1
                 time_label.config(text=f"Time left: {time_sec}s")
@@ -125,17 +118,13 @@ def jouer(position):
                     canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
                                        text="Le joueur B a gagné!", fill="black", font=("Arial", 24))
                     partie_t = True
-                elif all(cell["occupied_by"] is not None for row in board for cell in row):
-                    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
-                                       text="Il y a ex-aequo!", fill="black", font=("Arial", 24))
-                    partie_t = True
                 else:
                     # Passer au joueur suivant
                     if symbol == "A":
                         symbol = "B"
                     elif symbol == "B":
                         symbol = "A"
-                    change_time(2 * n + n + 1)
+                    change_time(2 * n + n)
                     turn_label.config(text=f"Tour du joueur: {symbol}")  # Mettre à jour le tour du joueur
             else:
                 messagebox.showwarning("Case occupée", f"La case {position} est déjà occupée.")  # Case déjà occupée
@@ -147,8 +136,8 @@ def init(number):
     if not (type(number) == int):
         messagebox.showwarning("Erreur", "Le nombre de cases doit être un entier.")
         return
-    if not (5 <= number <= 25):
-        messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 5 et 25.")
+    if not (3 <= number <= 15):
+        messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 3 et 15.")
         return
 
     global n, board, partie_t, symbol, time_sec, timer_running, moves_played
@@ -250,14 +239,21 @@ root = Tk()
 root.title("Jeu de Hex")
 
 # Cadre pour le plateau de jeu
-canvas = Canvas(root, width=600, height=400)
+canvas = Canvas(root, width=1300, height=830)
 canvas.pack(pady=20)
 
 # Boutons de contrôle
 control_frame = Frame(root)
 control_frame.pack(pady=10)
 
-reset_button = Button(control_frame, text="Réinitialiser", command=lambda: init(n))
+# Ajout d'un champ de saisie pour la taille du tableau dans l'interface graphique
+size_entry_label = Label(control_frame, text="Taille du tableau (entre 3 et 15):")
+size_entry_label.grid(row=0, column=3, padx=5)
+size_entry = Entry(control_frame, width=5)
+size_entry.grid(row=0, column=4, padx=5)
+
+# Réinitialisation de la partie avec choix de la taille de la grille
+reset_button = Button(control_frame, text="Réinitialiser", command=lambda: init(int(size_entry.get())))
 reset_button.grid(row=0, column=0, padx=5)
 
 pause_button = Button(control_frame, text="Pause", command=pause_resume_timer)
