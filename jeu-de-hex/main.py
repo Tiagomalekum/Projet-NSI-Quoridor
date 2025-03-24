@@ -13,12 +13,13 @@ hex_size = 30  # Taille des hexagones
 timer_running = False
 pause_timer = False
 moves_played = 0  # Nouvelle variable pour suivre le nombre de coups joués
-
-# Structure pour garder trace des coups joués
-joueur_positions = {
-    "A": [],
-    "B": []
+block_mode = False
+bloqueurs_charges = {
+    "A": 1,
+    "B": 1
 }
+
+
 
 # Fonction d'affichage du plateau
 def affichage():
@@ -98,38 +99,63 @@ def pause_resume_timer():
     pause_button.config(text="Reprendre" if pause_timer else "Pause")
 
 def jouer(position):
-    global partie_t, symbol, n, moves_played, pause_timer
+    global partie_t, symbol, n, moves_played, pause_timer, block_mode, bloqueurs_charges
     if partie_t:
         messagebox.showwarning("Partie terminée", "Impossibilité de jouer, la partie est terminée. ")
     elif not pause_timer:
         x, y = position
-        if 0 <= x < n and 0 <= y < n:  # Vérifier si la position est valide
-            cell = board[x][y]
-            if cell["occupied_by"] is None:  # Si la case est vide
-                cell["occupied_by"] = symbol
-                joueur_positions[symbol].append(position)
-                draw_hexagon(canvas, x, y, symbol)  # Mettre à jour l'affichage du plateau
-                moves_played += 1  # Incrémenter le nombre de coups joués
-                if a_gagne("A"):
-                    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
-                                       text="Le joueur A a gagné!", fill="black", font=("Arial", 24))
-                    partie_t = True
-                elif a_gagne("B"):
-                    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
-                                       text="Le joueur B a gagné!", fill="black", font=("Arial", 24))
-                    partie_t = True
-                else:
-                    # Passer au joueur suivant
-                    if symbol == "A":
-                        symbol = "B"
-                    elif symbol == "B":
-                        symbol = "A"
-                    change_time(2 * n + n)
-                    turn_label.config(text=f"Tour du joueur: {symbol}")  # Mettre à jour le tour du joueur
+        cell = board[x][y]
+        if cell["occupied_by"] is None and not block_mode:  # Si la case est vide
+            cell["occupied_by"] = symbol
+            draw_hexagon(canvas, x, y, symbol)  # Mettre à jour l'affichage du plateau
+            if a_gagne("A"):
+                canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
+                                   text="Le joueur A a gagné!", fill="black", font=("Arial", 24))
+                partie_t = True
+            elif a_gagne("B"):
+                canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
+                                   text="Le joueur B a gagné!", fill="black", font=("Arial", 24))
+                partie_t = True
+            elif all(cell["occupied_by"] is not None for row in board for cell in row):
+                canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
+                                   text="Il y a ex-aequo!", fill="black", font=("Arial", 24))
+                partie_t = True
             else:
-                messagebox.showwarning("Case occupée", f"La case {position} est déjà occupée.")  # Case déjà occupée
+                # Passer au joueur suivant
+                if symbol == "A":
+                    symbol = "B"
+                elif symbol == "B":
+                    symbol = "A"
+                change_time(2 * n + n)
+                turn_label.config(text=f"Tour du joueur: {symbol}")  # Mettre à jour le tour du joueur
+                moves_played += 1
+                allturns_label.config(text=f"Coups joués: {moves_played}")
+            
+        elif cell["occupied_by"] is None and block_mode:
+            cell["occupied_by"] = "Blocked"
+            bloqueurs_charges[symbol] -= 1
+            block_button.config(text=f"Bloquer une case (A:{bloqueurs_charges["A"]} B:{bloqueurs_charges["B"]})") # Mettre à jour le compteur du boutton bloqueur
+            draw_hexagon(canvas, x, y, "Blocked")
+            block_mode = False
+            if symbol == "A":
+                symbol = "B"
+            elif symbol == "B":
+                symbol = "A"
+            change_time(2 * n + n)
+            turn_label.config(text=f"Tour du joueur: {symbol}")  # Mettre à jour le tour du joueur
+            moves_played += 1
+            allturns_label.config(text=f"Coups joués: {moves_played}")
+            
         else:
-            messagebox.showwarning("Position invalide", "Position invalide.")  # Position non-existante
+            messagebox.showwarning("Case occupée", f"La case {position} est déjà occupée.")  # Case déjà occupée
+
+def block_cell(position):
+    global symbol, bloqueurs_charges, time_sec, block_mode
+    if bloqueurs_charges[symbol] > 0:
+        if not block_mode:
+            time_sec += 100
+        block_mode = True
+        turn_label.config(text="Veuillez choisir une case à bloquer.")
 
 def init(number):
     """Reinitialise la partie."""
@@ -140,13 +166,19 @@ def init(number):
         messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 5 et 25.")
         return
 
-    global n, board, partie_t, symbol, time_sec, timer_running, moves_played, hex_size
+    global n, board, partie_t, symbol, time_sec, timer_running, moves_played, hex_size, bloqueurs_charges
     n = number
     hex_size = 42-number*1.05
     partie_t = False
     symbol = "A"  # Le joueur A commence
     time_sec = 2 * n + n
-    moves_played = 0  # Réinitialiser le nombre de coups joués
+    bloqueurs_charges = {
+    "A": n // 3,
+    "B": n // 3
+    }
+    block_button.config(text=f"Bloquer une case (A:{bloqueurs_charges["A"]} B:{bloqueurs_charges["B"]})") # Mettre à jour le compteur du boutton bloqueur
+    moves_played = 0
+    allturns_label.config(text=f"Coups joués: {moves_played}")
 
     # Réinitialiser le plateau de jeu
     board = []
@@ -172,9 +204,6 @@ def init(number):
                 "occupied_by": None  # Champ pour indiquer si la case est occupée par un joueur
             })
         board.append(row)
-
-    joueur_positions["A"] = []
-    joueur_positions["B"] = []
 
     # Mettre à jour l'interface graphique
     canvas.delete("all")
@@ -210,6 +239,8 @@ def draw_hexagon(canvas, row, col, player=None):
         fill = "red"
     elif player == "B":
         fill = "blue"
+    elif player == "Blocked":
+        fill = "black"
     canvas.create_polygon(points, outline="black", fill=fill, tags=f"{row},{col}")
     canvas.tag_bind(f"{row},{col}", "<Button-1>", lambda e, r=row, c=col: jouer((r, c)))
 
@@ -232,8 +263,8 @@ def draw_board(canvas, n):
     canvas.create_rectangle(0, canvas.winfo_height() - 30 * 0.9, canvas.winfo_width(), canvas.winfo_height(), outline="blue", fill="blue")
 
     # Ajouter l'étiquette "B" dans les barres bleues
-    canvas.create_text(canvas.winfo_width() / 2, hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
-    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() - hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
+    canvas.create_text(canvas.winfo_width() / 2, 30 * 0.45, text="B", fill="white", font=("Arial", 24))
+    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() - 30 * 0.45, text="B", fill="white", font=("Arial", 24))
 
 # Initialisation de l'interface graphique
 root = Tk()
@@ -253,6 +284,9 @@ size_entry_label.grid(row=0, column=3, padx=5)
 size_entry = Entry(control_frame, width=5)
 size_entry.grid(row=0, column=4, padx=5)
 
+block_button = Button(control_frame, text=f"Bloquer une case (A:{bloqueurs_charges["A"]} B:{bloqueurs_charges["B"]})", command=lambda: block_cell((int(size_entry.get()), int(size_entry.get()))))
+block_button.grid(row=0, column=5, padx=5)
+
 # Réinitialisation de la partie avec choix de la taille de la grille
 reset_button = Button(control_frame, text="Réinitialiser", command=lambda: init(int(size_entry.get())))
 reset_button.grid(row=0, column=0, padx=5)
@@ -263,12 +297,16 @@ pause_button.grid(row=0, column=1, padx=5)
 quit_button = Button(control_frame, text="Quitter", command=quitter)
 quit_button.grid(row=0, column=2, padx=5)
 
+# Label pour le nombre de coups de la partie
+allturns_label = Label(root, text=f"Coups joués: {moves_played}", font=("Arial", 10))
+allturns_label.pack(side="bottom", pady=3)
+
 # Label pour afficher le tour du joueur
-turn_label = Label(root, text=f"Tour du joueur: {symbol}")
+turn_label = Label(root, text=f"Tour du joueur: {symbol}", font=("Arial", 13))
 turn_label.pack(side="bottom", pady=10)
 
 # Label pour le minuteur
-time_label = Label(root, text=f"Temps restant: {time_sec}s", font=("Arial", 18))  # Augmenter la taille de la police
+time_label = Label(root, text=f"Temps restant: {time_sec}s", font=("Arial", 18))
 time_label.pack(side="bottom", pady=10)
 
 # Lancer le jeu
