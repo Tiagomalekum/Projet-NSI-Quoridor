@@ -136,12 +136,13 @@ def init(number):
     if not (type(number) == int):
         messagebox.showwarning("Erreur", "Le nombre de cases doit être un entier.")
         return
-    if not (3 <= number <= 15):
-        messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 3 et 15.")
+    if not (5 <= number <= 25):
+        messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 5 et 25.")
         return
 
-    global n, board, partie_t, symbol, time_sec, timer_running, moves_played
+    global n, board, partie_t, symbol, time_sec, timer_running, moves_played, hex_size
     n = number
+    hex_size = 42-number*1.05
     partie_t = False
     symbol = "A"  # Le joueur A commence
     time_sec = 2 * n + n
@@ -189,8 +190,8 @@ def quitter():
 
 def draw_hexagon(canvas, row, col, player=None):
     # Calcul des positions x et y pour centrer les hexagones
-    x_offset = (canvas.winfo_width() - ((n - 1) * hex_size * 2.5 + hex_size * (3**0.01))) / 2
-    y_offset = (canvas.winfo_height() - (n * hex_size * 1.3)) / 2
+    x_offset = (canvas.winfo_width() - ((n - 1) * hex_size * 2.615 + hex_size * (3**0.01))) / 2
+    y_offset = (canvas.winfo_height() - (n * hex_size * 1.41)) / 2
 
     # Calcul des coordonnées du centre de l'hexagone
     x = x_offset + col * (hex_size * 1.8) + row * (hex_size * 0.9)
@@ -219,18 +220,18 @@ def draw_board(canvas, n):
             draw_hexagon(canvas, i, j)
     
     # Dessiner les barres décoratives rouges à droite et à gauche
-    canvas.create_rectangle(0, 0, hex_size * 0.9, canvas.winfo_height(), outline="red", fill="red")
-    canvas.create_rectangle(canvas.winfo_width() - hex_size * 0.9, 0, canvas.winfo_width(), canvas.winfo_height(), outline="red", fill="red")
+    canvas.create_rectangle(0, 0, 30 * 0.9, canvas.winfo_height(), outline="red", fill="red")
+    canvas.create_rectangle(canvas.winfo_width() - 30 * 0.9, 0, canvas.winfo_width(), canvas.winfo_height(), outline="red", fill="red")
     
-    # Ajouter les étiquettes "A" et "B" dans les barres rouges et bleues
-    canvas.create_text(hex_size * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
-    canvas.create_text(canvas.winfo_width() - hex_size * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
+    # Ajouter l'étiquettes "A" dans les barres rouges
+    canvas.create_text(30 * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
+    canvas.create_text(canvas.winfo_width() - 30 * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
     
     # Dessiner les barres décoratives bleues en haut et en bas
-    canvas.create_rectangle(0, 0, canvas.winfo_width(), hex_size * 0.9, outline="blue", fill="blue")
-    canvas.create_rectangle(0, canvas.winfo_height() - hex_size * 0.9, canvas.winfo_width(), canvas.winfo_height(), outline="blue", fill="blue")
+    canvas.create_rectangle(0, 0, canvas.winfo_width(), 30 * 0.9, outline="blue", fill="blue")
+    canvas.create_rectangle(0, canvas.winfo_height() - 30 * 0.9, canvas.winfo_width(), canvas.winfo_height(), outline="blue", fill="blue")
 
-    # Ajouter les étiquettes "A" et "B" dans les barres rouges et bleues
+    # Ajouter l'étiquette "B" dans les barres bleues
     canvas.create_text(canvas.winfo_width() / 2, hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
     canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() - hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
 
@@ -239,7 +240,7 @@ root = Tk()
 root.title("Jeu de Hex")
 
 # Cadre pour le plateau de jeu
-canvas = Canvas(root, width=1300, height=830)
+canvas = Canvas(root, width=1200, height=800)
 canvas.pack(pady=20)
 
 # Boutons de contrôle
@@ -247,7 +248,7 @@ control_frame = Frame(root)
 control_frame.pack(pady=10)
 
 # Ajout d'un champ de saisie pour la taille du tableau dans l'interface graphique
-size_entry_label = Label(control_frame, text="Taille du tableau (entre 3 et 15):")
+size_entry_label = Label(control_frame, text="Taille du tableau (entre 5 et 25):")
 size_entry_label.grid(row=0, column=3, padx=5)
 size_entry = Entry(control_frame, width=5)
 size_entry.grid(row=0, column=4, padx=5)
