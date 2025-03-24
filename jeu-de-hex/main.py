@@ -4,6 +4,7 @@
 #                                                                              #
 ################################################################################
 
+
 import time
 import threading
 from tkinter import *
@@ -18,6 +19,7 @@ time_sec = 0
 hex_size = 30  # Taille des hexagones
 timer_running = False
 pause_timer = False
+moves_played = 0  # Nouvelle variable pour suivre le nombre de coups joués
 
 # Structure pour garder trace des coups joués
 joueur_positions = {
@@ -76,13 +78,15 @@ def change_time(time):
 
 def minuteur_start():
     def minuteur():
-        global partie_t, time_sec, timer_running, pause_timer
+        global partie_t, time_sec, timer_running, pause_timer, moves_played
         timer_running = True
+        time_label.config(text=f"Time left: {time_sec}s")
         while time_sec > 0 and not partie_t:
             if not pause_timer:
-                time_label.config(text=f"Time left: {time_sec}s")
-                time.sleep(1)
+                sleep_time = max(0.1, 1 - (moves_played * 0.05))  # Réduire le temps de sommeil progressivement
+                time.sleep(sleep_time)
                 time_sec -= 1
+                time_label.config(text=f"Time left: {time_sec}s")
 
         if not partie_t:
             if symbol == "A":
@@ -101,7 +105,7 @@ def pause_resume_timer():
     pause_button.config(text="Reprendre" if pause_timer else "Pause")
 
 def jouer(position):
-    global partie_t, symbol, n
+    global partie_t, symbol, n, moves_played
     if partie_t:
         messagebox.showwarning("Partie terminée", "Impossibilité de jouer, la partie est terminée. ")
     else:
@@ -112,6 +116,7 @@ def jouer(position):
                 cell["occupied_by"] = symbol
                 joueur_positions[symbol].append(position)
                 draw_hexagon(canvas, x, y, symbol)  # Mettre à jour l'affichage du plateau
+                moves_played += 1  # Incrémenter le nombre de coups joués
                 if a_gagne("A"):
                     canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, 
                                        text="Le joueur A a gagné!", fill="black", font=("Arial", 24))
@@ -146,11 +151,12 @@ def init(number):
         messagebox.showwarning("Erreur", "Le nombre de cases doit être compris entre 5 et 25.")
         return
 
-    global n, board, partie_t, symbol, time_sec, timer_running
+    global n, board, partie_t, symbol, time_sec, timer_running, moves_played
     n = number
     partie_t = False
     symbol = "A"  # Le joueur A commence
     time_sec = 2 * n + n
+    moves_played = 0  # Réinitialiser le nombre de coups joués
 
     # Réinitialiser le plateau de jeu
     board = []
@@ -194,8 +200,8 @@ def quitter():
 
 def draw_hexagon(canvas, row, col, player=None):
     # Calcul des positions x et y pour centrer les hexagones
-    x_offset = (canvas.winfo_width() - ((n - 1) * hex_size * 1.8 + hex_size * (3**0.5))) / 2
-    y_offset = (canvas.winfo_height() - (n * hex_size * 1.8)) / 2
+    x_offset = (canvas.winfo_width() - ((n - 1) * hex_size * 2.5 + hex_size * (3**0.01))) / 2
+    y_offset = (canvas.winfo_height() - (n * hex_size * 1.3)) / 2
 
     # Calcul des coordonnées du centre de l'hexagone
     x = x_offset + col * (hex_size * 1.8) + row * (hex_size * 0.9)
@@ -218,16 +224,33 @@ def draw_hexagon(canvas, row, col, player=None):
     canvas.tag_bind(f"{row},{col}", "<Button-1>", lambda e, r=row, c=col: jouer((r, c)))
 
 def draw_board(canvas, n):
+    # Dessiner les hexagones
     for i in range(n):
         for j in range(n):
             draw_hexagon(canvas, i, j)
+    
+    # Dessiner les barres décoratives rouges à droite et à gauche
+    canvas.create_rectangle(0, 0, hex_size * 0.9, canvas.winfo_height(), outline="red", fill="red")
+    canvas.create_rectangle(canvas.winfo_width() - hex_size * 0.9, 0, canvas.winfo_width(), canvas.winfo_height(), outline="red", fill="red")
+    
+    # Ajouter les étiquettes "A" et "B" dans les barres rouges et bleues
+    canvas.create_text(hex_size * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
+    canvas.create_text(canvas.winfo_width() - hex_size * 0.45, canvas.winfo_height() / 2, text="A", fill="white", font=("Arial", 24))
+    
+    # Dessiner les barres décoratives bleues en haut et en bas
+    canvas.create_rectangle(0, 0, canvas.winfo_width(), hex_size * 0.9, outline="blue", fill="blue")
+    canvas.create_rectangle(0, canvas.winfo_height() - hex_size * 0.9, canvas.winfo_width(), canvas.winfo_height(), outline="blue", fill="blue")
+
+    # Ajouter les étiquettes "A" et "B" dans les barres rouges et bleues
+    canvas.create_text(canvas.winfo_width() / 2, hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
+    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() - hex_size * 0.45, text="B", fill="white", font=("Arial", 24))
 
 # Initialisation de l'interface graphique
 root = Tk()
 root.title("Jeu de Hex")
 
 # Cadre pour le plateau de jeu
-canvas = Canvas(root, width=800, height=600)
+canvas = Canvas(root, width=600, height=400)
 canvas.pack(pady=20)
 
 # Boutons de contrôle
@@ -243,13 +266,13 @@ pause_button.grid(row=0, column=1, padx=5)
 quit_button = Button(control_frame, text="Quitter", command=quitter)
 quit_button.grid(row=0, column=2, padx=5)
 
-# Label pour le minuteur
-time_label = Label(root, text=f"Time left: {time_sec}s")
-time_label.pack(side="bottom", pady=10)
-
 # Label pour afficher le tour du joueur
 turn_label = Label(root, text=f"Tour du joueur: {symbol}")
 turn_label.pack(side="bottom", pady=10)
+
+# Label pour le minuteur
+time_label = Label(root, text=f"Temps restant: {time_sec}s", font=("Arial", 18))  # Augmenter la taille de la police
+time_label.pack(side="bottom", pady=10)
 
 # Lancer le jeu
 root.update_idletasks()  # Mettre à jour le canvas pour obtenir les bonnes dimensions
