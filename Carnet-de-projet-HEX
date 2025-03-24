@@ -3,6 +3,10 @@
 #############################################
 
 
+taches de chacun:
+
+Gabriel: interface + systeme de gagner
+Tiago: 
 1. Introduction
 Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
 composé de cellules hexagonales. Ce projet vise à développer une version physique et/ou numérique du jeu.
