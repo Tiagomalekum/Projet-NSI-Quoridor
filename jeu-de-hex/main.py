@@ -153,9 +153,11 @@ def block_cell(position):
     global symbol, bloqueurs_charges, time_sec, block_mode
     if bloqueurs_charges[symbol] > 0:
         if not block_mode:
-            time_sec += 100
+            time_sec += n*4
         block_mode = True
         turn_label.config(text="Veuillez choisir une case à bloquer.")
+    else:
+        messagebox.showwarning("Vous avez déjà utilisé tous vos bloqueurs.")
 
 def init(number):
     """Reinitialise la partie."""
