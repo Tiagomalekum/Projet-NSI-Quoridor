@@ -5,14 +5,18 @@
 
 
 Tâches de chacun:
+
 Guillaume: être un gros flemmard + carnet de projet + présentation Canva. (si il la fait)
+
 Gabriel: Interface + systeme de gagner + carnet de projet. (!! GABRIEL SI TU VIENS MODIFIER LE CARNET ENLEVE CETTE PARENTHESE SINON T'ES UN GROS CACA POURRI !!)
+
 Tiago: Jeu principal + carnet de projet.
 
 
 
 
 ### 1. Introduction
+
 Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
 composé de cellules hexagonales. Ce projet vise à développer une version physique et/ou numérique du jeu.
 
@@ -21,13 +25,12 @@ composé de cellules hexagonales. Ce projet vise à développer une version phys
 
 
 ### 2. Objectifs du Projet
-Concevoir un plateau de jeu ergonomique et esthétique.
 
-Développer une version numérique jouable en ligne ou (si possible) contre une intelligence artificielle.
+Concevoir un plateau de jeu simple.
 
 Offrir une expérience utilisateur assez fluide.
 
-Intégrer un mode multijoueur et des options de personnalisation.
+Intégrer de nouveaux éléments pour distinguer cette version de l'original.
 
 
 
@@ -35,8 +38,8 @@ Intégrer un mode multijoueur et des options de personnalisation.
 
 ### 3. Analyse et Conception
 
-Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau
-en forme de losange constitué de cellules hexagonales. Il a été inventé indépendamment par Piet Hein et John Nash.
+Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau en forme de losange constitué de cellules hexagonales. Il a été inventé
+indépendamment par Piet Hein et John Nash.
 
 
 
@@ -110,7 +113,7 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
 - Suivi de nouvelles règles pour plus d'originalité, comme:
 
 
-* Temps s'écoulant de plus en plus vite a chaque tour (pensée par Gabriel)
+* Temps s'écoulant de plus en plus vite a chaque tour (pensée par Gabriel).
 
 
 * Bloques cases qui permet de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée de recharges par joueur selon la taille du tableau.
@@ -119,7 +122,7 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
   boutton et à poser son ou ses bloqueurs avant de joueur son tour.
 
   Il faut donc aussi bien penser à créer une fin de partie quand le tableau et rempli mais qu'il n'y a pas de gagnants! Car dans le jeu de hex de base le ex-aequo
-  est impossible, mais ce nouveau pouvoir change cela (pensée par Tiago)
+  est impossible, mais ce nouveau pouvoir change cela (pensée par Tiago).
 
 
 
