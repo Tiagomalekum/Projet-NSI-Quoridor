@@ -140,7 +140,6 @@ def jouer(position):
             turn_label.config(text=f"Tour du joueur: {symbol}")
             moves_played += 1
             allturns_label.config(text=f"Coups joués: {moves_played}")
-            
         else:
             messagebox.showwarning("Case occupée", f"La case {position} est déjà occupée.")  # Case déjà occupée
 
