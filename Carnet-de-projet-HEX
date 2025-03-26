@@ -34,31 +34,41 @@ Intégrer un mode multijoueur et des options de personnalisation.
 
 
 ### 3. Analyse et Conception
+
 Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau
 en forme de losange constitué de cellules hexagonales. Il a été inventé indépendamment par Piet Hein et John Nash.
 
+
+
 1. Objectif du Jeu
+
 Chaque joueur doit créer un chemin ininterrompu reliant deux côtés opposés du plateau avec ses pièces.
 
-Le joueur Rouge doit connecter le haut et le bas du plateau.
-Le joueur Bleu doit connecter la gauche et la droite du plateau.
+Le joueur Rouge (A) doit connecter la gauche et la droite du plateau.
+Le joueur Bleu (B) doit connecter le haut et le bas du plateau.
+
+
 
 2. Matériel
 
 Un plateau de jeu hexagonal (taille standard : 11x11, mais d’autres tailles comme 13x13 ou 19x19 sont utilisées).
 Deux ensembles de pièces distinctes (rouges et bleues).
 
+
+
 3. Déroulement d'une Partie
+
 Tour par tour : Les joueurs placent à tour de rôle une pièce de leur couleur sur une case vide du plateau.
 Placement irréversible : Une fois placée, une pièce ne peut plus être déplacée ni retirée.
-Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur.
+Chaque joueur possède 1 minute pour placer ses pièces durant l'integralité de la partie: plus le joueur prend tu temps pour faire son coup, moins il aura
+de temps.
+Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur. (!)
+
+
 
 4. Fin de Partie et Victoire
-La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces.
 
-Règles du jeu : Deux joueurs s'affrontent en posant des pièces sur une grille hexagonale. Le but est de créer un chemin ininterrompu reliant deux côtés opposés.
-
-Version numérique : Programmation en Python, essayer de creer une Interface simple et accessible.
+La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces, ou lorsqu' un des joueur épuise son temps.
 
 
 
@@ -68,23 +78,48 @@ Version numérique : Programmation en Python, essayer de creer une Interface sim
 
 - Implémentation d'une version basique 5 par 5 avec Python:
 
+* Tableau rempli de points (cases vides), A et B pour la representation des cases prises, affichage des lignes qui se décalent pour créer la forme losangique et pour
+  faciliter l'identification des voisins d'une case.
 
 
-- Création de système de customization de la taille du tableau avant l'initialisation de la partie (entre 5 et 25 )
+* Fonction qui permet de prendre une case, avec systéme de tours (tour de A puis tour de B).
+
+
+* Création d'un système détectant la victoire d'un joueur.
+
+
+* Implémentation d'un chronomètre pour limiter la durée d'un tour d'un joueur (sinon victoire du joueur adverse).
+  Contrairement au jeu original, le temps que le joueur possedera pour jouer son coup se limitera aux tours seulement, et non à toute la partie.
+
+
+* Fonction qui permet de réinitialiser la partie.
+
+
+
+
+- Création de système de customization de la taille du tableau avant l'initialisation de la partie (entre 5 et 25).
+
+
+
+
+- Création d'une interface graphique simple avec TKinter (tableau, hexagones, bouttons, textes, etc...).
+
 
 
 
 - Suivi de nouvelles règles pour plus d'originalité, comme:
 
+
 * Temps s'écoulant de plus en plus vite a chaque tour (pensée par Gabriel)
 
-* Bloques cases qui permet de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée par joueur selon la taille du tableau.
+
+* Bloques cases qui permet de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée de recharges par joueur selon la taille du tableau.
+
+  Ce bloqueur s'afficherait en tant que case noir. Et à chaque utilisation on ajoute du temps au chrono pour que le joueur ne perde pas du temps à cliquer le
+  boutton et à poser son ou ses bloqueurs avant de joueur son tour.
+
   Il faut donc aussi bien penser à créer une fin de partie quand le tableau et rempli mais qu'il n'y a pas de gagnants! Car dans le jeu de hex de base le ex-aequo
   est impossible, mais ce nouveau pouvoir change cela (pensée par Tiago)
-
-
-
-- Création d'une interface graphique simple avec TKinter (tableau, hexagones, bouttons, textes, etc...).
 
 
 
