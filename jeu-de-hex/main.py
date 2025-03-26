@@ -137,12 +137,7 @@ def jouer(position):
             block_button.config(text=f"Bloquer une case (A:{bloqueurs_charges["A"]} B:{bloqueurs_charges["B"]})") # Mettre à jour le compteur du boutton bloqueur
             draw_hexagon(canvas, x, y, "Blocked")
             block_mode = False
-            if symbol == "A":
-                symbol = "B"
-            elif symbol == "B":
-                symbol = "A"
-            change_time(2 * n + n)
-            turn_label.config(text=f"Tour du joueur: {symbol}")  # Mettre à jour le tour du joueur
+            turn_label.config(text=f"Tour du joueur: {symbol}")
             moves_played += 1
             allturns_label.config(text=f"Coups joués: {moves_played}")
             
