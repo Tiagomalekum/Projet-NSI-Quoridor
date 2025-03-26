@@ -3,16 +3,24 @@
 #############################################
 
 
-taches de chacun:
 
-Gabriel: interface + systeme de gagner
-Tiago: 
-1. Introduction
+Tâches de chacun:
+Guillaume: être un gros flemmard + carnet de projet + présentation Canva. (si il la fait)
+Gabriel: Interface + systeme de gagner + carnet de projet. (!! GABRIEL SI TU VIENS MODIFIER LE CARNET ENLEVE CETTE PARENTHESE SINON T'ES UN GROS CACA POURRI !!)
+Tiago: Jeu principal + carnet de projet.
+
+
+
+
+### 1. Introduction
 Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
 composé de cellules hexagonales. Ce projet vise à développer une version physique et/ou numérique du jeu.
 
-2. Objectifs du Projet
 
+
+
+
+### 2. Objectifs du Projet
 Concevoir un plateau de jeu ergonomique et esthétique.
 
 Développer une version numérique jouable en ligne ou (si possible) contre une intelligence artificielle.
@@ -21,7 +29,11 @@ Offrir une expérience utilisateur assez fluide.
 
 Intégrer un mode multijoueur et des options de personnalisation.
 
-3. Analyse et Conception
+
+
+
+
+### 3. Analyse et Conception
 Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau
 en forme de losange constitué de cellules hexagonales. Il a été inventé indépendamment par Piet Hein et John Nash.
 
@@ -41,31 +53,49 @@ Tour par tour : Les joueurs placent à tour de rôle une pièce de leur couleur 
 Placement irréversible : Une fois placée, une pièce ne peut plus être déplacée ni retirée.
 Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur.
 
-4. Règle du Swap (Équilibrage du Premier Coup)
-Pour éviter un avantage trop important au premier joueur, une règle courante permet au second joueur de choisir entre :
-Continuer normalement.
-Inverser les couleurs et jouer à la place du premier joueur.
-
-5. Fin de Partie et Victoire
+4. Fin de Partie et Victoire
 La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces.
 
 Règles du jeu : Deux joueurs s'affrontent en posant des pièces sur une grille hexagonale. Le but est de créer un chemin ininterrompu reliant deux côtés opposés.
 
 Version numérique : Programmation en Python, essayer de creer une Interface simple et accessible.
 
-4. Développement et Prototypage
 
-Implémentation d'une version basique en avec Python
-suivi de nouvelles règles pour plus d'originalité.
 
-Ajout d'une intelligence artificielle avec des algorithmes de recherche.
 
-Tests et ajustements
 
-5. Conclusion et Perspectives
-Une fois la version de base fonctionnelle, des améliorations comme des modes de jeu avancés, un tutoriel interactif et des classements en ligne pourront être ajoutés.
+### 4. Développement et Prototypage
 
-# Je vais faire une présentation CANVA pour mieux présenter et trier les informations
+- Implémentation d'une version basique 5 par 5 avec Python:
+
+
+
+- Création de système de customization de la taille du tableau avant l'initialisation de la partie (entre 5 et 25 )
+
+
+
+- Suivi de nouvelles règles pour plus d'originalité, comme:
+
+* Temps s'écoulant de plus en plus vite a chaque tour (pensée par Gabriel)
+
+* Bloques cases qui permet de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée par joueur selon la taille du tableau.
+  Il faut donc aussi bien penser à créer une fin de partie quand le tableau et rempli mais qu'il n'y a pas de gagnants! Car dans le jeu de hex de base le ex-aequo
+  est impossible, mais ce nouveau pouvoir change cela (pensée par Tiago)
+
+
+
+- Création d'une interface graphique simple avec TKinter (tableau, hexagones, bouttons, textes, etc...).
+
+
+
+
+
+### 5. Conclusion et Perspectives
+
+Une fois la version de base fonctionnelle, les améliorations et nouvelles méchaniques pourrons être implimentées, et une interface graphique pourras enfin être
+mise en place pour créer un jeu fonctionel.
+
+# Nous allons maintenant faire une présentation CANVA pour mieux présenter et trier les informations
 
 
 
