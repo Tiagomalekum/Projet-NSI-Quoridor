@@ -6,9 +6,9 @@
 
 Tâches de chacun:
 
-Guillaume: être un gros flemmard + carnet de projet + présentation Canva. (si il la fait)
+Guillaume: être un gros flemmard + carnet de projet + présentation.
 
-Gabriel: Interface + systeme de gagner + carnet de projet. (!! GABRIEL SI TU VIENS MODIFIER LE CARNET ENLEVE CETTE PARENTHESE SINON T'ES UN GROS CACA POURRI !!)
+Gabriel: Interface + systeme de gagner.
 
 Tiago: Jeu principal + carnet de projet.
 
@@ -18,7 +18,7 @@ Tiago: Jeu principal + carnet de projet.
 ### 1. Introduction
 
 Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
-composé de cellules hexagonales. Ce projet vise à développer une version physique et/ou numérique du jeu.
+composé de cellules hexagonales. Ce projet vise à développer une version numérique du jeu.
 
 
 
@@ -30,7 +30,7 @@ Concevoir un plateau de jeu simple.
 
 Offrir une expérience utilisateur assez fluide.
 
-Intégrer de nouveaux éléments pour distinguer cette version de l'original.
+Intégrer de nouveaux éléments pour distinguer cette version de l'originale.
 
 
 
@@ -63,15 +63,13 @@ Deux ensembles de pièces distinctes (rouges et bleues).
 
 Tour par tour : Les joueurs placent à tour de rôle une pièce de leur couleur sur une case vide du plateau.
 Placement irréversible : Une fois placée, une pièce ne peut plus être déplacée ni retirée.
-Chaque joueur possède 1 minute pour placer ses pièces durant l'integralité de la partie: plus le joueur prend tu temps pour faire son coup, moins il aura
-de temps.
 Aucun match nul : Il est mathématiquement prouvé qu’une partie ne peut pas finir sans vainqueur. (!)
 
 
 
 4. Fin de Partie et Victoire
 
-La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces, ou lorsqu' un des joueur épuise son temps.
+La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés avec un chemin ininterrompu de ses pièces.
 
 
 
@@ -91,11 +89,13 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
 * Création d'un système détectant la victoire d'un joueur.
 
 
-* Implémentation d'un chronomètre pour limiter la durée d'un tour d'un joueur (sinon victoire du joueur adverse).
-  Contrairement au jeu original, le temps que le joueur possedera pour jouer son coup se limitera aux tours seulement, et non à toute la partie.
-
-
 * Fonction qui permet de réinitialiser la partie.
+
+
+
+
+- Implémentation d'un chronomètre pour limiter la durée d'un tour d'un joueur (sinon victoire du joueur adverse).
+  Le temps que le joueur possedera pour jouer son coup se limitera aux tours seulement.
 
 
 
@@ -110,19 +110,19 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
 
 
 
-- Suivi de nouvelles règles pour plus d'originalité, comme:
+- Ajout de nouvelles règles pour plus d'originalité, comme:
 
 
 * Temps s'écoulant de plus en plus vite a chaque tour (pensée par Gabriel).
 
 
-* Bloques cases qui permet de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée de recharges par joueur selon la taille du tableau.
+* Bloques cases qui permettent de bloquer une ou plusieurs cases au choix pendant son tour, avec une quantité limitée de recharges par joueur selon la taille du tableau.
 
   Ce bloqueur s'afficherait en tant que case noir. Et à chaque utilisation on ajoute du temps au chrono pour que le joueur ne perde pas du temps à cliquer le
   boutton et à poser son ou ses bloqueurs avant de joueur son tour.
 
   Il faut donc aussi bien penser à créer une fin de partie quand le tableau et rempli mais qu'il n'y a pas de gagnants! Car dans le jeu de hex de base le ex-aequo
-  est impossible, mais ce nouveau pouvoir change cela (pensée par Tiago).
+  est impossible, mais ce nouveau pouvoir changerait cela (pensée par Tiago).
 
 
 
