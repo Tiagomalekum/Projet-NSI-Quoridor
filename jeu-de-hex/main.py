@@ -21,20 +21,6 @@ bloqueurs_charges = {
 
 
 
-# Fonction d'affichage du plateau
-def affichage():
-    c = 0
-    for row in board:
-        row_display = []
-        for cell in row:
-            if cell["occupied_by"]:
-                row_display.append(cell["occupied_by"])  # Affiche le symbole du joueur
-            else:
-                row_display.append(".")  # Une case vide est représentée par un point
-        c += 1
-        print(" " * c + " ".join(row_display))  # Concaténation et décalage des colonnes
-    print()  # Ligne vide pour séparer les lignes
-
 def est_chemin(position, joueur, visited):
     x, y = position
     if joueur == "A" and y == n - 1:
@@ -74,7 +60,7 @@ def minuteur_start():
     def minuteur():
         global partie_t, time_sec, timer_running, pause_timer, moves_played
         timer_running = True
-        time_label.config(text=f"Time left: {time_sec}s")
+        time_label.config(text=f"Temps restant: {time_sec}s")
         while time_sec > 0 and not partie_t:
             if not pause_timer:
                 sleep_time = max(0.1, 1 - (moves_played * 0.03))  # Réduire le temps de sommeil progressivement
