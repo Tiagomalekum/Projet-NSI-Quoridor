@@ -65,7 +65,7 @@ def minuteur_start():
                 sleep_time = max(0.1, 1 - (moves_played * 0.03))  # Réduire le temps de sommeil progressivement
                 time.sleep(sleep_time)
                 time_sec -= 1
-                time_label.config(text=f"Time left: {time_sec}s")
+                time_label.config(text=f"Temps restant: {time_sec}s")
 
         if not partie_t:
             if symbol == "A":
