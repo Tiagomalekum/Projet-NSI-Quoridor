@@ -6,25 +6,17 @@
 
 Tâches de chacun:
 
-Guillaume: carnet de projet + présentation.
+Guillaume: Timer + carnet de projet + présentation canva.
 
-Gabriel: Interface + systeme de gagner.
+Gabriel: Interface graphique + systeme de gagner.
 
-Tiago: Jeu principal + carnet de projet.
-
-
-
-
-### 1. Introduction
-
-Le jeu de Hex est un jeu de stratégie abstrait joué sur un plateau en forme de losange 
-composé de cellules hexagonales. Ce projet vise à développer une version numérique du jeu.
+Tiago: Système de tours des joueurs + changement de la taille du plateau + bloque cases.
 
 
 
 
 
-### 2. Objectifs du Projet
+### Objectifs du Projet
 
 Concevoir un plateau de jeu simple.
 
@@ -36,7 +28,7 @@ Intégrer de nouveaux éléments pour distinguer cette version de l'originale.
 
 
 
-### 3. Analyse et Conception
+### Analyse et Conception
 
 Le jeu de Hex est un jeu de stratégie abstrait qui oppose deux joueurs sur un plateau en forme de losange constitué de cellules hexagonales. Il a été inventé
 indépendamment par Piet Hein et John Nash.
@@ -75,7 +67,7 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
 
 
 
-### 4. Développement et Prototypage
+### Développement et Prototypage
 
 - Implémentation d'une version basique 5 par 5 avec Python:
 
@@ -128,16 +120,10 @@ La partie se termine lorsqu’un des joueurs réussit à relier ses deux côtés
 
 
 
-### 5. Conclusion et Perspectives
+### Conclusion et Perspectives
 
 Une fois la version de base fonctionnelle, les améliorations et nouvelles méchaniques pourrons être implimentées, et une interface graphique pourras enfin être
 mise en place pour créer un jeu fonctionel.
-
-
-
-
-
-# Nous allons maintenant faire une présentation CANVA pour pouvoir présenter le code du jeu et son fonctionnement
 
 
 
